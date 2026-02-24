@@ -120,7 +120,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         s.setPhone(rs.getString("phone"));
         s.setAddress(rs.getString("address"));
         s.setRole(rs.getString("role"));
-
+        // Pranav
         return s;
     }
 }
