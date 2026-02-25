@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SupplierServiceImplJdbc implements SupplierService {
 
-    private SupplierDAO supplierDAO;
+    private final SupplierDAO supplierDAO;
 
     public SupplierServiceImplJdbc(SupplierDAO supplierDAO) {
         this.supplierDAO = supplierDAO;
@@ -28,7 +28,6 @@ public class SupplierServiceImplJdbc implements SupplierService {
 
     @Override
     public List<Supplier> getAllSuppliersSortedByName() throws SQLException {
-
         List<Supplier> list = supplierDAO.getAllSuppliers();
         list.sort(Comparator.comparing(Supplier::getSupplierName));
         return list;
