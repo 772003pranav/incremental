@@ -1,46 +1,43 @@
 package com.edutech.progressive.service;
-
+ 
 import com.edutech.progressive.dao.WarehouseDAO;
 import com.edutech.progressive.dao.WarehouseDAOImpl;
 import com.edutech.progressive.entity.Warehouse;
-
+ 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+ 
 public interface WarehouseService {
-
-    WarehouseDAO warehouseDAO = new WarehouseDAOImpl();
-
-    List<Warehouse> getAllWarehouses() throws SQLException;
-
-    int addWarehouse(Warehouse warehouse) throws SQLException;
-
-    List<Warehouse> getWarehousesSortedByCapacity() throws SQLException;
-
-    default void emptyArrayList() {
+    WarehouseDAO warehouseDAO = new WarehouseDAOImpl() ;
+    public List<Warehouse> getAllWarehouses()throws SQLException;
+ 
+    public int addWarehouse(Warehouse warehouse)throws SQLException;
+ 
+    public List<Warehouse> getWarehousesSortedByCapacity()throws SQLException;
+ 
+    public default void emptyArrayList() {
     }
-
-    // Do not implement these methods in WarehouseServiceImplArraylist.java class
-    default void updateWarehouse(Warehouse warehouse) throws SQLException {
+ 
+    //Do not implement these methods in WarehouseServiceImplArraylist.java class
+    public default void updateWarehouse(Warehouse warehouse)throws SQLException {
         warehouseDAO.updateWarehouse(warehouse);
     }
-
-    default void deleteWarehouse(int warehouseId) throws SQLException {
+ 
+    public default void deleteWarehouse(int warehouseId) throws SQLException{
         warehouseDAO.deleteWarehouse(warehouseId);
     }
-
-    default Warehouse getWarehouseById(int warehouseId) throws SQLException {
+ 
+    public default Warehouse getWarehouseById(int warehouseId)throws SQLException {
         return warehouseDAO.getWarehouseById(warehouseId);
     }
-
-    // Do not implement these methods in WarehouseServiceImplArraylist.java and WarehouseServiceImplJdbc.java class
-    default List<Warehouse> getWarehouseBySupplier(int supplierId) throws SQLException {
+ 
+    //Do not implement these methods in WarehouseServiceImplArraylist.java and WarehouseServiceImplJdbc.java class
+    public default List<Warehouse> getWarehouseBySupplier(int supplierId) throws SQLException{
         List<Warehouse> warehouses = warehouseDAO.getAllWarehouse();
-        List<Warehouse> filtered = new ArrayList<>();
-
-        for (Warehouse warehouse : warehouses) {
-            if (warehouse.getSupplierId() == supplierId) {
+        List<Warehouse> filtered = new ArrayList<>(); 
+        for(Warehouse warehouse:warehouses){
+            if(warehouse.getSupplier().getSupplierId()== supplierId){
                 filtered.add(warehouse);
             }
         }
